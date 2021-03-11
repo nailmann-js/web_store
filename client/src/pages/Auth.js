@@ -1,23 +1,48 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Card, Container, Form, Row } from 'react-bootstrap';
+import Alert from 'react-bootstrap/Alert';
 import 'bootstrap/dist/css/bootstrap-grid.min.css';
-import { NavLink, useLocation } from 'react-router-dom';
-import { LOGIN_ROUTE, REGISTRATION_ROUTE } from '../utils/consts';
+import { NavLink, useHistory, useLocation } from 'react-router-dom';
+import { LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE } from '../utils/consts';
 import { login, registration } from '../http/userAPI';
+import { observer } from 'mobx-react-lite';
+import { Context } from '../index';
 
-const Auth = () => {
+
+const Auth = observer(() => {
+    const { user } = useContext(Context);
     const location = useLocation();
+    const histoty = useHistory();
     const isLogin = location.pathname === LOGIN_ROUTE;
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    // const [show, setShow] = useState(true)
 
     const click = async () => {
-        if (isLogin) {
-            const response = await login();
-        } else {
-            const response = await registration(email, password);
+        try {
+            let data;
+            if (isLogin) {
+                data = await login(email, password);
+            } else {
+                data = await registration(email, password);
+            }
+            user.setUser(user); // save data from user store
+            user.setIsAuth(true);
+            histoty.push(SHOP_ROUTE);
+        }
+        catch (e) {
+            alert(e.response.data.message);
+            // if (show) {
+            //     console.log(e.response.data.message)
+            //     return (
+            //         <Alert variant="danger" onClose={() => setShow(false)} dismissible>
+            //             <Alert.Heading>Oh snap! You got an authorization error!</Alert.Heading>
+            //         </Alert>
+            //     );
+            // }
         }
     }
+
 
     return (
         <Container
@@ -62,6 +87,6 @@ const Auth = () => {
             </Card >
         </Container >
     );
-};
+});
 
 export default Auth;
