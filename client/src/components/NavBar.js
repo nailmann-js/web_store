@@ -16,6 +16,11 @@ const NavBar = observer(() => {
     const { user } = useContext(Context);
     const history = useHistory();
 
+    const logOut = () => {
+        user.setUser({});
+        user.setIsAuth(false);
+    }
+
     return (
         <Navbar bg="dark" expand="lg">
             <Container>
@@ -30,7 +35,7 @@ const NavBar = observer(() => {
                             Админ панель</Button>
                         <Button
                             variant={'outline-light'}
-                            onClick={() => history.push(LOGIN_ROUTE)}
+                            onClick={() => logOut()}
                             className="ms-2"
                         >
                             Выход
