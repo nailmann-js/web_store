@@ -1,19 +1,19 @@
-import React, {useContext} from 'react';
-import {observer} from "mobx-react-lite";
-import {Context} from "../index";
-import {Row} from "react-bootstrap";
-import DeviceItem from "./DeviceItem";
+import { observer } from 'mobx-react-lite';
+import React, { useContext } from 'react';
+import { Row } from 'react-bootstrap';
+import { Context } from '..';
+import DeviceItem from './DeviceItem';
+import 'bootstrap/dist/css/bootstrap-grid.min.css';
 
 const DeviceList = observer(() => {
-    const {device} = useContext(Context)
-
+    const { device } = useContext(Context);
     return (
         <Row className="d-flex">
             {device.devices.map(device =>
-                <DeviceItem key={device.id} device={device}/>
+                <DeviceItem key={device.id} device={device} />
             )}
         </Row>
-    );
-});
+    )
+})
 
 export default DeviceList;
