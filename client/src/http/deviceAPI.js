@@ -23,3 +23,13 @@ export const fetchTypes = async () => {
     const { data } = await $host.get('api/type');
     return data;
 }
+
+export const createBrand = async (name) => {
+    const { data } = await $authHost.post('api/brand', { name });
+    return data;
+}
+
+export const fetchBrands = async () => {
+    const { data } = await $host.get('api/brand');
+    return data;
+}

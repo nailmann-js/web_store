@@ -6,13 +6,13 @@ import TypeBar from '../components/TypeBar';
 import { observer } from 'mobx-react-lite';
 import 'bootstrap/dist/css/bootstrap-grid.min.css';
 import { Context } from '..';
-import { fetchTypes } from '../http/deviceAPI';
+import { fetchBrands, fetchTypes } from '../http/deviceAPI';
 
 const Shop = observer(() => {
     const { device } = useContext(Context);
-    fetchTypes().then(data => device.setTypes(data))
     useEffect(() => {
-
+        fetchTypes().then(data => device.setTypes(data))
+        fetchBrands().then(data => device.setBrands(data))
     }, [])
 
     return (
