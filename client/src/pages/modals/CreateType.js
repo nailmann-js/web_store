@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import { createType } from '../../http/deviceAPI';
 
 const CreateType = ({ show, onHide }) => {
-    let [type, setType] = useState('');
+    const [type, setType] = useState('');
 
     const create = () => {
         createType(type).then((response) => {

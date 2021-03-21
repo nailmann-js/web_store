@@ -6,8 +6,7 @@ import { Context } from '../..';
 import { createBrand } from '../../http/deviceAPI';
 
 const CreateBrands = ({ show, onHide }) => {
-
-    let [brand, setBrand] = useState('');
+    const [brand, setBrand] = useState('');
     const create = () => {
         createBrand(brand).then((response) => {
             setBrand('');

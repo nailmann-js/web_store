@@ -1,23 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Container, Image, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap-grid.min.css';
-
+import { useParams } from 'react-router-dom';
+import { fetchOneDevice } from '../http/deviceAPI';
 
 const DevicePage = () => {
-    const icon = 'https://img.icons8.com/ios/452/star--v1.png';
-    const device = { id: 2, name: 'iphone', price: 25000, rating: "5", img: 'https://img.mvideo.ru/Pdb/30052890b.jpg' };
-    const description = [
-        { id: 1, title: 'RAM', description: "5 gb" },
-        { id: 2, title: 'ROM', description: "5 gb" },
-        { id: 3, title: 'RUM', description: "5 gb" },
-        { id: 4, title: 'RCM', description: "5 gb" },
-    ];
+    const icon = 'https://img.icons8.com/android/240/000000/star.png';
+    const [device, setDevice] = useState({ info: [] });
+    const { id } = useParams();
+
+
+    useEffect(() => {
+        fetchOneDevice(id).then(data => {
+            return setDevice(data)
+        })
+    }, [])
+
     return (
         <Container className='mt-3'>
             <Row>
                 <Col md={4}>
                     {/* Разбиваем по 4 на 3 столбца */}
-                    <Image width={300} height={300} src={device.img} />
+                    <Image width={300} height={300} src={process.env.REACT_APP_API_URL + device.img} />
                 </Col>
                 <Col md={4}>
                     <Row className="d-flex flex-column align-items-center">
@@ -43,7 +47,7 @@ const DevicePage = () => {
             </Row>
             <Row className="d-flex flex-column m-3">
                 <h1>Характеристики</h1>
-                {description.map((info, index) =>
+                {device.info.map((info, index) =>
                     <Row
                         style={{ background: index % 2 === 0 ? 'lightgray' : 'transparent', padding: 10 }}
                         key={info.id}

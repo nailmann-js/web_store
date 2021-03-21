@@ -4,15 +4,7 @@ export default class DeviceStore {
     constructor() {
         this._types = [];
         this._brands = [];
-        this._devices = [
-            { id: 1, name: 'iphone', price: 25000, rating: "5", img: 'https://img.mvideo.ru/Pdb/30052890b.jpg' },
-            { id: 2, name: 'iphone', price: 25000, rating: "5", img: 'https://img.mvideo.ru/Pdb/30052890b.jpg' },
-            { id: 3, name: 'iphone', price: 26000, rating: "5", img: 'https://img.mvideo.ru/Pdb/30052890b.jpg' },
-            { id: 4, name: 'iphone', price: 25555, rating: "5", img: 'https://img.mvideo.ru/Pdb/30052890b.jpg' },
-            { id: 5, name: 'iphone', price: 25000, rating: "5", img: 'https://img.mvideo.ru/Pdb/30052890b.jpg' },
-            { id: 6, name: 'iphone', price: 26000, rating: "5", img: 'https://img.mvideo.ru/Pdb/30052890b.jpg' },
-            { id: 7, name: 'iphone', price: 25555, rating: "5", img: 'https://img.mvideo.ru/Pdb/30052890b.jpg' }
-        ];
+        this._devices = [];
         this._selectedType = {};
         this._selectedBrand = {};
         makeAutoObservable(this);
