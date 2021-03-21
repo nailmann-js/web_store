@@ -2,16 +2,27 @@ import React, { useContext } from 'react';
 import { observer } from 'mobx-react-lite';
 import { Context } from '..';
 import { Pagination } from 'react-bootstrap';
-import 'react-bootstrap/dist/react-bootstrap-grid.min.css';
+import 'bootstrap/dist/css/bootstrap-grid.min.css';
 
 const Pages = observer(() => {
     const { device } = useContext(Context);
-    const pages = [1, 2, 3, 4, 5];
+    const pagesCount = Math.ceil(device.totalCount / device.limit);
+    const pages = [];
+
+    for (let i = 0; i < pagesCount; i++) {
+        pages.push(i + 1);
+    }
 
     return (
         <Pagination className="mt-5">
             {pages.map(page =>
-                <Pagination.Item>{page}</Pagination.Item>
+                <Pagination.Item
+                    key={page}
+                    active={device.page === page}
+                    onClick={() => device.setPage(page)}
+                >
+                    {page}
+                </Pagination.Item>
             )}
         </Pagination>
     )
