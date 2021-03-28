@@ -21,12 +21,18 @@ const Auth = observer(() => {
         try {
             let data;
             if (isLogin) {
-                data = await login(email, password);
+                data = await login(email, password)
+                    .then(() => {
+                        user.setUser(user);
+                        user.setIsAuth(true);
+                    })
             } else {
-                data = await registration(email, password);
+                data = await registration(email, password)
+                    .then(() => {
+                        user.setUser(user);
+                        user.setIsAuth(true);
+                    });
             }
-            user.setUser(user); // save data from user store
-            user.setIsAuth(true);
             history.push(SHOP_ROUTE);
         }
         catch (e) {
