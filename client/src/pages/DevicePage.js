@@ -20,7 +20,6 @@ const DevicePage = () => {
         <Container className='mt-3'>
             <Row>
                 <Col md={4}>
-                    {/* Разбиваем по 4 на 3 столбца */}
                     <Image width={300} height={300} src={process.env.REACT_APP_API_URL + device.img} />
                 </Col>
                 <Col md={4}>
@@ -29,7 +28,6 @@ const DevicePage = () => {
                         <div
                             className="d-flex align-items-center justify-content-center"
                             style={{ background: `url(${icon}) no-repeat center center`, width: 240, height: 240, backgroundSize: 'cover', fontSize: 64 }}
-                        // no repeat center center  чтобы звезда не повторялась и была по центру
                         >
                             {device.rating}
                         </div>

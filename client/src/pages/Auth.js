@@ -12,11 +12,10 @@ import { Context } from '../index';
 const Auth = observer(() => {
     const { user } = useContext(Context);
     const location = useLocation();
-    const histoty = useHistory();
+    const history = useHistory();
     const isLogin = location.pathname === LOGIN_ROUTE;
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    // const [show, setShow] = useState(true)
 
     const click = async () => {
         try {
@@ -28,18 +27,10 @@ const Auth = observer(() => {
             }
             user.setUser(user); // save data from user store
             user.setIsAuth(true);
-            histoty.push(SHOP_ROUTE);
+            history.push(SHOP_ROUTE);
         }
         catch (e) {
             alert(e.response.data.message);
-            // if (show) {
-            //     console.log(e.response.data.message)
-            //     return (
-            //         <Alert variant="danger" onClose={() => setShow(false)} dismissible>
-            //             <Alert.Heading>Oh snap! You got an authorization error!</Alert.Heading>
-            //         </Alert>
-            //     );
-            // }
         }
     }
 
