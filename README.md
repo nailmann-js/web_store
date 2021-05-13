@@ -2,7 +2,7 @@
 
 
 
-![Example]()
+![Example](https://github.com/nailmann-js/web_store/blob/master/client/public/React_App.gif)
 
 
 ## Technologies: 
