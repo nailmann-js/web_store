@@ -18,7 +18,6 @@ Mobx-react-lite</br>
 
 #Backend:</br>
 Node js (express)</br>
-Nodemon</br>
 Sequelize</br>
 
 
